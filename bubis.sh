@@ -31,10 +31,11 @@ echo -e "\e[93m\e[1m----> Installing Oh-My-Zsh";
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 #Figure out how to automate or get around the oh-my-zsh installer here
 #Maybe just pull my ~/.oh-my-zsh over?
+echo -e "\e[32mDone!";
 
 #---------Install essentials
 echo -e "\e[93m\e[1m----> Installing essential packages";
-apt-get install -y git rename findutils make gcc mlocate apt-transport-https
+apt-get install -y git rename findutils make gcc mlocate apt-transport-https curl
 echo -e "\e[32mDone!";
 sleep 1.5
 
@@ -54,7 +55,7 @@ touch /etc/apt/sources.list.d/tor.list && echo "
 " > /etc/apt/sources.list.d/tor.list;
 wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null;
 apt-get update & apt-get install -y tor deb.torproject.org-keyring;
-echo -e "\e[32mDone! Tor is now installed";
+echo -e "\e[32mDone!";
 sleep 1.5
 
 #Proxychains
@@ -63,8 +64,15 @@ apt-get install -y proxychains4
 echo -e "\e[32mDone!";
 sleep 1.5
 
-#---------Install Go
-#---------szOnly needed on systems without apt-get 
+#Mullvad
+echo -e "\e[93m\e[1m----> Installing Mullvad";
+curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
+echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/mullvad.list
+apt-get update && apt-get install mullvad-vpn
+echo -e "\e[32mDone!";
+sleep 1.5
+##---------Install Go
+##Rewrite Go installer to get the latest version and do this process faster
 #echo -e "\e[93m\e[1m----> Golang environment installation in progress ...";
 #cd /tmp && wget https://go.dev/dl/go1.21.6.linux-amd64.tar.gz > /dev/null 2>&1 && tar xvf go1.21.6.linux-amd64.tar.gz > /dev/null 2>&1;
 #mv go /usr/local
