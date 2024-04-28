@@ -1,6 +1,6 @@
-# VPS-Bug-Bounty-Tools
+# BuBIS/BugBountyInstallationScript
 
-Script that automates the installation of the main tools used for web application penetration testing and Bug Bounty.
+Script that automates the installation of the main tools used for web application penetration testing and Bug Bounty. Forked from @drak3hft7 's original to update the go modules with their more up to date install commands and repo links. Added a few more tools and a few customizations for my preferred shell too! :D 
 
 ## Usage:
 ```bash
@@ -17,6 +17,12 @@ sudo ./Tools-BugBounty-installer.sh
 - [Nmap](https://nmap.org/)
 - [Masscan](https://github.com/robertdavidgraham/masscan)
 - [Naabu](https://github.com/projectdiscovery/naabu)
+
+## Privacy related:
+
+- [TOR](https://www.torproject.org/)
+- [Mullvad VPN](https://mullvad.net/)
+- [Proxychains](https://github.com/rofl0r/proxychains-ng)
 
 ## Subdomain Enumeration and DNS Resolver:
 
@@ -119,5 +125,14 @@ sudo ./Tools-BugBounty-installer.sh
 - 26 November 2022: Inserted into the script the Gxss and Dalfox tools
 - 19 January 2023: Inserted into the script the socialhunter tool.
 - 29 March 2024: Inserted into the script the gauplus tool.
+- 28 April 2024: Inserted Tor, Proxychains, and Mullvad.
+    - Inserted zsh and oh-my-zsh.
+    - Modified the go get's with their new repos.
+    - Modified the go get's to be go install's
 
+# Future plans:
+- Update Golang install process with a faster and more reliable method.
+- Streamline the oh-my-zsh install portion to try and eliminate any user interaction. Fire & forget/go get coffee being the goal.
+- Add dotfiles containing shell preferences, aliases, and functions. 
+- Add and remove tools based on my own preferences.
 
